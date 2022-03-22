@@ -40,16 +40,14 @@ const updateTodo = asyncHandler(async (req, res) => {
     throw new Error("Todo not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Check if user is owner of todo
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // Ensure user do not update other users todo
-  if (todo.user.toString() !== user.id) {
+  if (todo.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
@@ -72,16 +70,14 @@ const deleteTodo = asyncHandler(async (req, res) => {
     throw new Error("Todo not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Check if user is owner of todo
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // Ensure user do not update other users todo
-  if (todo.user.toString() !== user.id) {
+  if (todo.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
