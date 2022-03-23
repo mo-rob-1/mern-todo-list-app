@@ -55,7 +55,7 @@ function Login() {
     <>
       <section className="heading">
         <h1>Login</h1>
-        <p>Login to your account</p>
+        <p>Login to access your account</p>
       </section>
       <section className="form">
         <form onSubmit={onSubmit}>
